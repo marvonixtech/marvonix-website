@@ -1,7 +1,14 @@
 import React from 'react';
+import SEO from '../components/SEO';
 
 export const Privacy: React.FC = () => (
   <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-32 prose prose-lg dark:prose-invert">
+    <SEO 
+      title="Privacy Policy"
+      description="MARVONIX privacy policy. Learn how we collect, use, and protect your data."
+      canonical="https://marvonix.com/privacy"
+      noindex={true}
+    />
     <h1 className="text-[#0A0F2C] dark:text-white font-[800] tracking-tighter">Privacy Policy</h1>
     <p className="text-slate-600 dark:text-slate-400 lead">Last Updated: 7 December 2025</p>
     <p className="text-slate-600 dark:text-slate-400">MARVONIX ("we", "us", or "our") respects your privacy. This policy explains what information we collect, how we use it, and your rights regarding your data.</p>
@@ -16,6 +23,12 @@ export const Privacy: React.FC = () => (
 
 export const Terms: React.FC = () => (
   <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-32 prose prose-lg dark:prose-invert">
+    <SEO 
+      title="Terms & Conditions"
+      description="MARVONIX terms of service and website usage conditions."
+      canonical="https://marvonix.com/terms"
+      noindex={true}
+    />
     <h1 className="text-[#0A0F2C] dark:text-white font-[800] tracking-tighter">Terms & Conditions</h1>
     <p className="text-slate-600 dark:text-slate-400 lead">Last Updated: 7 December 2025</p>
     <h3 className="text-[#0A0F2C] dark:text-white font-bold tracking-tight">Overview</h3>

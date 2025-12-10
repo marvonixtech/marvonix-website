@@ -6,13 +6,48 @@ import FadeIn from '../components/ui/FadeIn';
 import TechTicker from '../components/ui/TechTicker';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
+import SEO from '../components/SEO';
+import StructuredData from '../components/StructuredData';
 import { SERVICES } from '../data/content';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MARVONIX",
+    "url": "https://marvonix.com",
+    "logo": "https://marvonix.com/logo.png",
+    "description": "Boutique software engineering firm specializing in AI automation, web development, and systems integration.",
+    "sameAs": [
+      "https://twitter.com/marvonix",
+      "https://github.com/marvonixtech"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Sales",
+      "url": "https://marvonix.com/contact"
+    },
+    "areaServed": "Worldwide",
+    "serviceType": [
+      "AI Automation",
+      "Web Development",
+      "Systems Integration",
+      "Product Strategy"
+    ]
+  };
+
   return (
     <div className="space-y-0">
+      <SEO 
+        title="MARVONIX - AI Automation & Software Engineering Services"
+        description="Boutique software engineering firm specializing in AI automation, web development, and systems integration. Direct access to senior engineers who ship quality solutions."
+        keywords="AI automation, software engineering, systems integration, custom development, workflow automation"
+        canonical="https://marvonix.com/"
+      />
+      <StructuredData data={organizationSchema} />
+      
       <section className="relative pt-32 pb-40 overflow-hidden bg-white dark:bg-[#0A0F2C]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
         

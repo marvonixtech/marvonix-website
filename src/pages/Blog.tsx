@@ -3,13 +3,31 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
+import SEO from '../components/SEO';
+import StructuredData from '../components/StructuredData';
 import { BLOG_POSTS } from '../data/content';
 
 export const BlogList: React.FC = () => {
   const navigate = useNavigate();
 
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "MARVONIX Engineering Blog",
+    "description": "Practical insights on automation, software development, and building better systems",
+    "url": "https://marvonix.com/blog"
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <SEO 
+        title="Engineering Blog - Automation, Systems & Strategy"
+        description="Practical insights on AI automation, software development, and building better systems. No fluff—just what works."
+        keywords="software engineering blog, automation insights, systems integration, software development tips"
+        canonical="https://marvonix.com/blog"
+      />
+      <StructuredData data={blogSchema} />
+      
       <SectionTitle 
         eyebrow="Blog" 
         title="Thoughts on building better systems."
@@ -62,8 +80,41 @@ export const BlogPost: React.FC = () => {
     );
   }
 
+  const blogPostSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.description,
+    "author": {
+      "@type": "Organization",
+      "name": "MARVONIX"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "MARVONIX",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://marvonix.com/logo.png"
+      }
+    },
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "mainEntityOfPage": `https://marvonix.com/blog/${post.slug}`,
+    "keywords": post.tags.join(', '),
+    "articleSection": post.tags[0]
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <SEO 
+        title={post.title}
+        description={post.description}
+        keywords={post.tags.join(', ')}
+        canonical={`https://marvonix.com/blog/${post.slug}`}
+        type="article"
+      />
+      <StructuredData data={blogPostSchema} />
+      
       <button onClick={() => navigate('/blog')} className="text-[#1A3CE4] dark:text-[#4FD3FF] hover:underline flex items-center mb-10 text-sm font-bold tracking-wide uppercase">
         <ArrowRight className="w-4 h-4 mr-2 rotate-180" /> Back to all posts
       </button>

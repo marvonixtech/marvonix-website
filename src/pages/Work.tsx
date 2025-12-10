@@ -4,6 +4,7 @@ import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import SEO from '../components/SEO';
 import { CASE_STUDIES } from '../data/content';
 
 const Work: React.FC = () => {
@@ -11,6 +12,13 @@ const Work: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <SEO 
+        title="Case Studies & Portfolio - Real Problems Solved"
+        description="See how MARVONIX helped companies automate operations, modernize legacy systems, and build scalable web applications. Real engineering solutions."
+        keywords="automation case studies, legacy system modernization, custom software solutions, workflow automation examples"
+        canonical="https://marvonix.com/work"
+      />
+      
       <SectionTitle 
         eyebrow="Selected Work" 
         title="Real problems we've solved."

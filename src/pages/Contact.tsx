@@ -3,6 +3,8 @@ import { CheckCircle2 } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
 import Button from '../components/ui/Button';
+import SEO from '../components/SEO';
+import StructuredData from '../components/StructuredData';
 
 const Contact: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -13,8 +15,33 @@ const Contact: React.FC = () => {
     setTimeout(() => setStatus('success'), 1500);
   };
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact MARVONIX",
+    "description": "Get in touch with MARVONIX software engineering team",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "MARVONIX",
+      "email": "hello@marvonix.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Sales",
+        "availableLanguage": "English"
+      }
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <SEO 
+        title="Contact MARVONIX - Start Your Software Project"
+        description="Tell us what you're trying to fix. We respond within 1-2 business days. Start a conversation with our senior engineering team."
+        keywords="contact software engineers, start software project, software development consultation"
+        canonical="https://marvonix.com/contact"
+      />
+      <StructuredData data={contactSchema} />
+      
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
         <div>
           <SectionTitle 

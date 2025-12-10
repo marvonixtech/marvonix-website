@@ -4,13 +4,72 @@ import { CheckCircle2 } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
 import Button from '../components/ui/Button';
+import SEO from '../components/SEO';
+import StructuredData from '../components/StructuredData';
 import { SERVICES } from '../data/content';
 
 const Services: React.FC = () => {
   const navigate = useNavigate();
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Software Development Services",
+    "provider": {
+      "@type": "Organization",
+      "name": "MARVONIX"
+    },
+    "areaServed": "Worldwide",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Software Engineering Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI & Automation",
+            "description": "Intelligent automation that saves time, including workflow automation, AI agents, and data pipelines."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Web & App Development",
+            "description": "Fast, reliable websites and applications with no bloat."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Systems Integration",
+            "description": "API development, CRM connections, and legacy modernization."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Product Strategy",
+            "description": "Technical audits, build vs buy analysis, and roadmap planning."
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <SEO 
+        title="Software Engineering Services - AI, Automation & Integration"
+        description="AI automation, custom web development, systems integration, and product strategy. No packages—we solve your specific engineering problems."
+        keywords="AI automation services, custom web development, systems integration, API development, legacy modernization"
+        canonical="https://marvonix.com/services"
+      />
+      <StructuredData data={serviceSchema} />
+      
       <SectionTitle 
         eyebrow="Services" 
         title="We solve problems. Here's how."

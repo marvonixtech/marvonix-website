@@ -1,10 +1,33 @@
 import React from 'react';
 import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
+import SEO from '../components/SEO';
+import StructuredData from '../components/StructuredData';
 
-const About: React.FC = () => (
-  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-    <SectionTitle 
+const About: React.FC = () => {
+  const aboutPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About MARVONIX",
+    "description": "Small, senior software engineering team focused on building calm, reliable systems.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "MARVONIX",
+      "description": "Boutique software engineering firm"
+    }
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <SEO 
+        title="About MARVONIX - Senior Software Engineering Team"
+        description="Small, senior software engineering team focused on AI automation and custom development. We're the engineers you wish were on your team."
+        keywords="senior software engineers, boutique development agency, small engineering team, software consulting"
+        canonical="https://marvonix.com/about"
+      />
+      <StructuredData data={aboutPageSchema} />
+      
+      <SectionTitle 
       eyebrow="About MARVONIX" 
       title="We're the engineers you wish were on your team."
       description="We started MARVONIX because too many good ideas get stuck in bad processes."
@@ -45,7 +68,8 @@ const About: React.FC = () => (
         </FadeIn>
       ))}
     </div>
-  </div>
-);
+    </div>
+  );
+};
 
 export default About;
