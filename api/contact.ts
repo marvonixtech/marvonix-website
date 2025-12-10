@@ -95,9 +95,9 @@ Time: ${new Date().toLocaleString('en-US', { timeZone: 'UTC' })} UTC
 
     // Send auto-reply to visitor with professional template
     await transporter.sendMail({
-      from: '"MARVONIX" <marvonix.tech@gmail.com>',
+      from: '"MARVONIX TECH" <marvonix.tech@gmail.com>',
       to: email,
-      subject: 'We received your message - MARVONIX',
+      subject: 'We received your message - MARVONIX TECH',
       text: `Thank you for reaching out! We've received your message. Please view this email in HTML format to see the full message. If you have urgent questions, contact marvonix.tech@gmail.com.`,
       html: `<!DOCTYPE html>
 <html>
