@@ -1,4 +1,4 @@
-import React, { useState, type FormEvent } from 'react';
+import React, { useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
@@ -8,11 +8,73 @@ import StructuredData from '../components/StructuredData';
 
 const Contact: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [errors, setErrors] = useState<{ email?: string; name?: string; message?: string }>({});
 
-  const handleSubmit = (e: FormEvent) => {
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Clear previous errors
+    setErrors({});
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      company: formData.get('company') as string || '',
+      budget: formData.get('budget') as string || '',
+      message: formData.get('message') as string,
+    };
+    
+    // Validate required fields
+    const newErrors: { email?: string; name?: string; message?: string } = {};
+    
+    if (!data.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    
+    if (!data.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!validateEmail(data.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (!data.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    
     setStatus('submitting');
-    setTimeout(() => setStatus('success'), 1500);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if (response.ok) {
+        setStatus('success');
+        (e.target as HTMLFormElement).reset();
+      } else {
+        const errorData = await response.json();
+        setStatus('idle');
+        alert(errorData.error || 'Error sending message. Please try again.');
+      }
+    } catch (error) {
+      setStatus('idle');
+      alert('Error sending message. Please try again.');
+    }
   };
 
   const contactSchema = {
@@ -23,7 +85,7 @@ const Contact: React.FC = () => {
     "mainEntity": {
       "@type": "Organization",
       "name": "MARVONIX",
-      "email": "hello@marvonix.com",
+      "email": "marvonix.tech@gmail.com",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "Sales",
@@ -91,28 +153,46 @@ const Contact: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide text-[11px]">Name</label>
-                  <input required type="text" className="w-full bg-slate-50 dark:bg-[#0A0F2C] border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium" placeholder="Jane Doe" />
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide text-[11px]">Name *</label>
+                  <input 
+                    type="text" 
+                    name="name" 
+                    className={`w-full bg-slate-50 dark:bg-[#0A0F2C] border ${errors.name ? 'border-red-500' : 'border-slate-200 dark:border-slate-700'} rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium`}
+                    placeholder="Jane Doe" 
+                  />
+                  {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide text-[11px]">Email</label>
-                  <input required type="email" className="w-full bg-slate-50 dark:bg-[#0A0F2C] border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium" placeholder="jane@company.com" />
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide text-[11px]">Email *</label>
+                  <input 
+                    type="email" 
+                    name="email" 
+                    className={`w-full bg-slate-50 dark:bg-[#0A0F2C] border ${errors.email ? 'border-red-500' : 'border-slate-200 dark:border-slate-700'} rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium`}
+                    placeholder="jane@company.com" 
+                  />
+                  {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide text-[11px]">Company</label>
-                    <input type="text" className="w-full bg-slate-50 dark:bg-[#0A0F2C] border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium" placeholder="Acme Inc" />
+                    <input type="text" name="company" className="w-full bg-slate-50 dark:bg-[#0A0F2C] border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium" placeholder="Acme Inc" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide text-[11px]">Budget</label>
-                    <input type="text" className="w-full bg-slate-50 dark:bg-[#0A0F2C] border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium" placeholder="$10k+" />
+                    <input type="text" name="budget" className="w-full bg-slate-50 dark:bg-[#0A0F2C] border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium" placeholder="$10k+" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide text-[11px]">Message</label>
-                  <textarea required rows={4} className="w-full bg-slate-50 dark:bg-[#0A0F2C] border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium" placeholder="Tell us about your project..."></textarea>
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide text-[11px]">Message *</label>
+                  <textarea 
+                    rows={4} 
+                    name="message" 
+                    className={`w-full bg-slate-50 dark:bg-[#0A0F2C] border ${errors.message ? 'border-red-500' : 'border-slate-200 dark:border-slate-700'} rounded-lg px-4 py-3.5 text-[#0A0F2C] dark:text-white focus:ring-2 focus:ring-[#1A3CE4] dark:focus:ring-[#4FD3FF] focus:border-transparent outline-none transition-all placeholder-slate-400 font-medium`}
+                    placeholder="Tell us about your project..."
+                  ></textarea>
+                  {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
                 </div>
-                <Button className="w-full justify-center text-lg h-14">
+                <Button className="w-full justify-center text-lg h-14" disabled={status === 'submitting'}>
                   {status === 'submitting' ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
