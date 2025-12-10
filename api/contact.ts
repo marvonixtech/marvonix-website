@@ -109,7 +109,8 @@ Time: ${new Date().toLocaleString('en-US', { timeZone: 'UTC' })} UTC
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
     .email-wrapper { background-color: #ffffff; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
     .header { text-align: center; margin-bottom: 40px; }
-    .logo { font-size: 32px; font-weight: bold; color: #1A3CE4; margin: 0; }
+    .logo { font-size: 32px; font-weight: bold; color: #0A0F2C; margin: 0; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .logo-dot { width: 8px; height: 8px; background-color: #1A3CE4; border-radius: 50%; display: inline-block; }
     .tagline { color: #6b7280; font-size: 14px; margin: 5px 0 0 0; }
     .divider { border: none; border-top: 2px solid #e5e7eb; margin: 30px 0; }
     h2 { color: #0A0F2C; font-size: 24px; margin: 0 0 20px 0; }
@@ -126,7 +127,7 @@ Time: ${new Date().toLocaleString('en-US', { timeZone: 'UTC' })} UTC
   <div class="container">
     <div class="email-wrapper">
       <div class="header">
-        <p class="logo">MARVONIX</p>
+        <p class="logo">MARVONIX<span class="logo-dot"></span></p>
         <p class="tagline">Software Engineering & Development</p>
       </div>
       
