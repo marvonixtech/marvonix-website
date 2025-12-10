@@ -55,9 +55,9 @@ Time: ${new Date().toLocaleString('en-US', { timeZone: 'UTC' })} UTC
 
     // Send email
     await transporter.sendMail({
-      from: '"MARVONIX Team" <marvonix.tech@gmail.com>',
+      from: '"MARVONIX Contact Form" <marvonix.tech@gmail.com>',
       to: 'marvonix.tech@gmail.com',
-      replyTo: email,
+      replyTo: `"${name}" <${email}>`,
       subject: `New Contact Form: ${name} - ${company || 'No Company'}`,
       text: emailContent,
       html: `
@@ -91,6 +91,73 @@ Time: ${new Date().toLocaleString('en-US', { timeZone: 'UTC' })} UTC
           </div>
         </div>
       `,
+    });
+
+    // Send auto-reply to visitor with professional template
+    await transporter.sendMail({
+      from: '"MARVONIX" <marvonix.tech@gmail.com>',
+      to: email,
+      subject: 'We received your message - MARVONIX',
+      text: `Thank you for reaching out! We've received your message. Please view this email in HTML format to see the full message. If you have urgent questions, contact marvonix.tech@gmail.com.`,
+      html: `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { margin: 0; padding: 0; background-color: #f9fafb; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .email-wrapper { background-color: #ffffff; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .header { text-align: center; margin-bottom: 40px; }
+    .logo { font-size: 32px; font-weight: bold; color: #1A3CE4; margin: 0; }
+    .tagline { color: #6b7280; font-size: 14px; margin: 5px 0 0 0; }
+    .divider { border: none; border-top: 2px solid #e5e7eb; margin: 30px 0; }
+    h2 { color: #0A0F2C; font-size: 24px; margin: 0 0 20px 0; }
+    p { color: #374151; line-height: 1.6; margin: 15px 0; }
+    .info-box { background-color: #f0f4ff; padding: 20px; border-radius: 8px; border-left: 4px solid #1A3CE4; margin: 25px 0; }
+    .info-box-title { color: #0A0F2C; font-weight: 600; margin: 0 0 10px 0; }
+    .info-box-text { color: #374151; font-size: 14px; margin: 0; }
+    .footer { text-align: center; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #9ca3af; font-size: 12px; }
+    a { color: #1A3CE4; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="email-wrapper">
+      <div class="header">
+        <p class="logo">MARVONIX</p>
+        <p class="tagline">Software Engineering & Development</p>
+      </div>
+      
+      <hr class="divider">
+      
+      <h2>Thank you for reaching out, ${name}! 👋</h2>
+      
+      <p>We've received your message and truly appreciate your interest in working with us.</p>
+      
+      <div class="info-box">
+        <p class="info-box-title">📋 What happens next?</p>
+        <p class="info-box-text">Our team typically responds within <strong>1-2 business days</strong>. We'll review your requirements and reach out with next steps.</p>
+      </div>
+      
+      <p>If you have any urgent questions in the meantime, feel free to reach out directly at <a href="mailto:marvonix.tech@gmail.com">marvonix.tech@gmail.com</a>.</p>
+      
+      <p style="margin-top: 30px;">
+        Best regards,<br>
+        <strong style="color: #0A0F2C;">The MARVONIX Team</strong>
+      </p>
+      
+      <hr class="divider">
+      
+      <div class="footer">
+        <p style="margin: 0;">© 2025 MARVONIX. All rights reserved.</p>
+        <p style="margin: 5px 0 0 0;"><a href="https://marvonix.com">Visit our website</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>`,
     });
 
     // Success response
