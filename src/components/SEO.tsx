@@ -15,7 +15,7 @@ export const SEO: React.FC<SEOProps> = ({
   title, 
   description, 
   canonical, 
-  ogImage = '/og-image.png',
+  ogImage = '/og-image.svg',
   keywords,
   noindex = false,
   type = 'website'
