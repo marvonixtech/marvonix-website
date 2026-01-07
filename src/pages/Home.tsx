@@ -21,7 +21,6 @@ const Home: React.FC = () => {
     "logo": "https://marvonix.com/logo.png",
     "description": "Boutique software engineering firm specializing in AI automation, web development, and systems integration.",
     "sameAs": [
-      "https://twitter.com/marvonix",
       "https://github.com/marvonixtech",
       "https://www.instagram.com/marvonix.tech/"
     ],

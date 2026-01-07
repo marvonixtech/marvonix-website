@@ -1,5 +1,5 @@
 import React from 'react';
-import { Twitter, Github, MessageCircle, Instagram } from 'lucide-react';
+import { Github, MessageCircle, Instagram } from 'lucide-react';
 import type { NavigateFunction } from '../../types';
 
 interface PageProps {
@@ -20,10 +20,6 @@ const Footer: React.FC<PageProps> = ({ navigate }) => (
           </p>
           <div className="flex space-x-4">
              {/* Socials with icons */}
-             <a href="https://twitter.com/marvonix" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center hover:bg-[#1A3CE4] dark:hover:bg-[#4FD3FF] hover:text-white dark:hover:text-[#0A0F2C] cursor-pointer transition-all duration-300">
-               <span className="sr-only">Twitter</span>
-               <Twitter className="h-5 w-5" />
-             </a>
              <a href="https://github.com/marvonixtech" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center hover:bg-[#1A3CE4] dark:hover:bg-[#4FD3FF] hover:text-white dark:hover:text-[#0A0F2C] cursor-pointer transition-all duration-300">
                <span className="sr-only">GitHub</span>
                <Github className="h-5 w-5" />
