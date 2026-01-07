@@ -15,7 +15,7 @@ export const SEO: React.FC<SEOProps> = ({
   title, 
   description, 
   canonical, 
-  ogImage = '/og-image.jpg',
+  ogImage = '/og-image.png',
   keywords,
   noindex = false,
   type = 'website'
@@ -40,7 +40,10 @@ export const SEO: React.FC<SEOProps> = ({
       {noindex ? (
         <meta name="robots" content="noindex, follow" />
       ) : (
-        <meta name="robots" content="index, follow" />
+        <>
+          <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+          <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        </>
       )}
       
       {/* Open Graph / Facebook */}

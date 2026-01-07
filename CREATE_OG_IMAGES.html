@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MARVONIX - Create OG Images</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8f9fa;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #1A3CE4;
+      margin-bottom: 30px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+    .image-preview {
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(135deg, #1A3CE4 0%, #705df2 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 64px;
+      font-weight: 800;
+      text-align: center;
+      margin: 20px 0;
+      border-radius: 8px;
+      transform: scale(0.5);
+      transform-origin: top left;
+    }
+    .subtitle {
+      font-size: 32px;
+      font-weight: 400;
+      margin-top: 20px;
+      opacity: 0.9;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      padding: 0;
+    }
+    .steps li {
+      counter-increment: step;
+      margin-bottom: 15px;
+      padding-left: 40px;
+      position: relative;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      background: #1A3CE4;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📸 Create OG Images for MARVONIX</h1>
+    
+    <div class="card">
+      <h2>What You Need to Do</h2>
+      <p>Your site currently has placeholder OG images. You need to create proper 1200x630px images for better social sharing.</p>
+      
+      <h3>Option 1: Quick Fix (Use Design Preview Below)</h3>
+      <ul class="steps">
+        <li>Take a screenshot of the preview below</li>
+        <li>Resize it to exactly 1200x630px</li>
+        <li>Save as <code>og-image.png</code> and <code>twitter-card.png</code></li>
+        <li>Replace files in <code>/public/</code> folder</li>
+        <li>Deploy</li>
+      </ul>
+
+      <div class="image-preview">
+        <div>MARVONIX</div>
+        <div class="subtitle">Calm systems for teams that hate chaos</div>
+      </div>
+
+      <h3>Option 2: Professional Design (Recommended)</h3>
+      <ul class="steps">
+        <li>Use Canva, Figma, or Photoshop</li>
+        <li>Canvas size: 1200px width × 630px height</li>
+        <li>Add your logo, tagline, and brand colors</li>
+        <li>Keep text large and readable (min 60px font size)</li>
+        <li>Export as PNG</li>
+        <li>Name files: <code>og-image.png</code> and <code>twitter-card.png</code></li>
+        <li>Place in <code>/public/</code> folder</li>
+      </ul>
+
+      <h3>Design Guidelines</h3>
+      <ul>
+        <li><strong>Resolution:</strong> 1200×630px (exact)</li>
+        <li><strong>Format:</strong> PNG or JPG</li>
+        <li><strong>File size:</strong> Under 1MB</li>
+        <li><strong>Safe zone:</strong> Keep important content within central 1200×600px area</li>
+        <li><strong>Colors:</strong> Use brand colors (#1A3CE4, #4FD3FF)</li>
+        <li><strong>Text:</strong> Large, bold, high contrast</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Why This Matters</h2>
+      <p>When people share your site on social media (LinkedIn, Twitter, WhatsApp), these images appear. Professional OG images:</p>
+      <ul>
+        <li>✅ Increase click-through rates by up to 40%</li>
+        <li>✅ Make your links look professional and trustworthy</li>
+        <li>✅ Help with brand recognition</li>
+        <li>✅ Improve social media engagement</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Current Status</h2>
+      <p>✅ Code is updated to use PNG format<br>
+      ⚠️ Placeholder images are in place<br>
+      ❌ Need to replace with actual designs</p>
+    </div>
+  </div>
+</body>
+</html>

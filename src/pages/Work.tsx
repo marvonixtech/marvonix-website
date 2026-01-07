@@ -4,6 +4,7 @@ import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import Breadcrumb from '../components/ui/Breadcrumb';
 import SEO from '../components/SEO';
 import { CASE_STUDIES } from '../data/content';
 
@@ -19,6 +20,8 @@ const Work: React.FC = () => {
         canonical="https://marvonix.com/work"
       />
       
+      <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Work' }]} />
+      
       <SectionTitle 
         eyebrow="Selected Work" 
         title="Real problems we've solved."
@@ -33,7 +36,7 @@ const Work: React.FC = () => {
                 <span className="text-[11px] font-bold text-[#1A3CE4] dark:text-[#4FD3FF] uppercase tracking-wider">{study.industry}</span>
                 <span className="bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] px-3 py-1 rounded-full font-medium border border-slate-200 dark:border-slate-700">Case Study</span>
               </div>
-              <h3 className="text-2xl font-bold text-[#0A0F2C] dark:text-white mb-6 leading-tight group-hover:text-[#1A3CE4] dark:group-hover:text-[#4FD3FF] transition-colors tracking-tight">{study.title}</h3>
+              <h2 className="text-2xl font-bold text-[#0A0F2C] dark:text-white mb-6 leading-tight group-hover:text-[#1A3CE4] dark:group-hover:text-[#4FD3FF] transition-colors tracking-tight">{study.title}</h2>
               
               <div className="space-y-6 mb-8 flex-grow">
                 <div className="bg-white dark:bg-[#0A0F2C]/50 p-4 rounded-lg border border-slate-100 dark:border-slate-800/50">
@@ -50,12 +53,28 @@ const Work: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2 mt-auto border-t border-slate-200 dark:border-slate-700 pt-6">
-                {study.tags.map((tag, i) => (
-                  <span key={i} className="px-3 py-1 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-md text-[11px] font-semibold uppercase tracking-wide border border-slate-200 dark:border-slate-700">
-                    {tag}
-                  </span>
-                ))}
+              <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mt-auto">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {study.tags.map((tag, i) => (
+                    <span key={i} className="px-3 py-1 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-md text-[11px] font-semibold uppercase tracking-wide border border-slate-200 dark:border-slate-700">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <button 
+                  onClick={() => {
+                    const serviceMap: { [key: number]: string } = {
+                      0: 'ai-automation',
+                      1: 'systems-integration', 
+                      2: 'web-app-development',
+                      3: 'ai-automation'
+                    };
+                    navigate(`/services#${serviceMap[idx]}`);
+                  }}
+                  className="text-[#1A3CE4] dark:text-[#4FD3FF] hover:underline text-xs font-bold"
+                >
+                  View related service →
+                </button>
               </div>
             </Card>
           </FadeIn>

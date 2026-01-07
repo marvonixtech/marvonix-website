@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Search, Wand2, Rocket, Users, MessageSquare, Shield, Zap } from 'lucide-react';
 import Button from '../components/ui/Button';
 import FadeIn from '../components/ui/FadeIn';
@@ -22,12 +22,20 @@ const Home: React.FC = () => {
     "description": "Boutique software engineering firm specializing in AI automation, web development, and systems integration.",
     "sameAs": [
       "https://twitter.com/marvonix",
-      "https://github.com/marvonixtech"
+      "https://github.com/marvonixtech",
+      "https://www.instagram.com/marvonix.tech/"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Sales",
-      "url": "https://marvonix.com/contact"
+      "url": "https://marvonix.com/contact",
+      "email": "marvonix.tech@gmail.com",
+      "telephone": "+919726492494"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Manish Vaghamshi",
+      "jobTitle": "Founder & CEO"
     },
     "areaServed": "Worldwide",
     "serviceType": [
@@ -107,13 +115,17 @@ const Home: React.FC = () => {
           description="We don't sell packages. We solve complex engineering problems."
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {SERVICES.map((service, idx) => (
+          {SERVICES.map((service, idx) => {
+            // Create anchor ID from service title
+            const anchorId = service.title.toLowerCase().replace(/[&\s]+/g, '-').replace(/^-+|-+$/g, '');
+            return (
             <FadeIn key={idx} delay={idx * 100}>
-              <Card className="h-full">
-                <div className="bg-slate-50 dark:bg-[#0F163A]/50 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-slate-100 dark:border-slate-700/50">
-                  {React.cloneElement(service.icon as React.ReactElement<any>, { className: "w-8 h-8 text-[#1A3CE4] dark:text-[#4FD3FF]" })}
-                </div>
-                <h3 className="text-2xl font-bold text-[#0A0F2C] dark:text-white mb-4 tracking-tight">{service.title}</h3>
+              <Link to={`/services#${anchorId}`} className="block h-full">
+                <Card id={anchorId} className="h-full scroll-mt-24 cursor-pointer">
+                  <div className="bg-slate-50 dark:bg-[#0F163A]/50 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-slate-100 dark:border-slate-700/50">
+                    {React.cloneElement(service.icon as React.ReactElement<any>, { className: "w-8 h-8 text-[#1A3CE4] dark:text-[#4FD3FF]" })}
+                  </div>
+                  <h2 className="text-2xl font-bold text-[#0A0F2C] dark:text-white mb-4 tracking-tight">{service.title}</h2>
                 <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed text-[15px]">{service.description}</p>
                 <ul className="space-y-3">
                   {service.capabilities.slice(0, 3).map((cap, i) => (
@@ -124,11 +136,14 @@ const Home: React.FC = () => {
                   ))}
                 </ul>
               </Card>
+              </Link>
             </FadeIn>
-          ))}
+          )}
+          )}
         </div>
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center flex flex-col sm:flex-row gap-4 justify-center">
           <Button variant="secondary" onClick={() => navigate('/services')}>View all services</Button>
+          <Button variant="secondary" onClick={() => navigate('/work')}>See what we've built</Button>
         </div>
       </section>
 
@@ -141,6 +156,9 @@ const Home: React.FC = () => {
             title="A process that doesn't get in your way."
             align="center"
           />
+          <p className="text-center text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4 mb-8">
+            We focus on clear priorities, direct communication, and shipping value fast. <Link to="/about" className="text-[#1A3CE4] dark:text-[#4FD3FF] hover:underline font-medium">Read our approach</Link>.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20">
             {[
               { step: "01", title: "Discover", icon: Search, desc: "We dig into what you're trying to fix, what's slowing you down, and where automation helps." },

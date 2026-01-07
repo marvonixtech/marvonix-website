@@ -1,9 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
 import Button from '../components/ui/Button';
+import Breadcrumb from '../components/ui/Breadcrumb';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
 import { SERVICES } from '../data/content';
@@ -70,6 +71,8 @@ const Services: React.FC = () => {
       />
       <StructuredData data={serviceSchema} />
       
+      <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Services' }]} />
+      
       <SectionTitle 
         eyebrow="Services" 
         title="We solve problems. Here's how."
@@ -91,7 +94,7 @@ const Services: React.FC = () => {
               <div className="md:w-2/3 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800 pt-8 md:pt-0 md:pl-12 flex flex-col justify-center">
                 <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 mb-10 leading-relaxed font-light">{service.description}</p>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-6">
                   {service.capabilities.map((cap, i) => (
                     <div key={i} className="flex items-center text-slate-600 dark:text-slate-400">
                       <CheckCircle2 className="w-5 h-5 text-[#1A3CE4] dark:text-[#4FD3FF] mr-3 flex-shrink-0" />
@@ -99,6 +102,9 @@ const Services: React.FC = () => {
                     </div>
                   ))}
                 </div>
+                <button onClick={() => navigate('/work')} className="text-[#1A3CE4] dark:text-[#4FD3FF] hover:underline text-sm font-bold flex items-center gap-2 group">
+                  See case studies <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
               </div>
             </div>
           </FadeIn>

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
+import Breadcrumb from '../components/ui/Breadcrumb';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
 import { BLOG_POSTS } from '../data/content';
@@ -27,6 +28,8 @@ export const BlogList: React.FC = () => {
         canonical="https://marvonix.com/blog"
       />
       <StructuredData data={blogSchema} />
+      
+      <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Blog' }]} />
       
       <SectionTitle 
         eyebrow="Blog" 
@@ -114,6 +117,8 @@ export const BlogPost: React.FC = () => {
         type="article"
       />
       <StructuredData data={blogPostSchema} />
+      
+      <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog' }, { label: post.title }]} />
       
       <button onClick={() => navigate('/blog')} className="text-[#1A3CE4] dark:text-[#4FD3FF] hover:underline flex items-center mb-10 text-sm font-bold tracking-wide uppercase">
         <ArrowRight className="w-4 h-4 mr-2 rotate-180" /> Back to all posts

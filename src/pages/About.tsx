@@ -1,10 +1,15 @@
 import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
+import Breadcrumb from '../components/ui/Breadcrumb';
+import Button from '../components/ui/Button';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
 
 const About: React.FC = () => {
+  const navigate = useNavigate();
+  
   const aboutPageSchema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
@@ -27,6 +32,8 @@ const About: React.FC = () => {
       />
       <StructuredData data={aboutPageSchema} />
       
+      <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
+      
       <SectionTitle 
       eyebrow="About MARVONIX" 
       title="We're the engineers you wish were on your team."
@@ -40,8 +47,42 @@ const About: React.FC = () => {
           Most software projects fail not because of technology, but because of process overhead, misaligned incentives, and teams that don't actually talk to each other.
         </p>
         <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-[18px]">
-          We think there's a better way. Small, senior teams. Direct communication. Clear priorities. No disappearing into the void for weeks at a time.
+          We think there's a better way. Small, senior teams. Direct communication. Clear priorities. No disappearing into the void for weeks at a time. We've built <Link to="/work" className="text-[#1A3CE4] dark:text-[#4FD3FF] hover:underline font-medium">production systems</Link> that our clients rely on every day.
         </p>
+      </div>
+    </FadeIn>
+
+    <FadeIn delay={300}>
+      <div className="my-32 bg-white dark:bg-[#111835] border border-slate-200 dark:border-slate-800 rounded-3xl p-12 md:p-16">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#1A3CE4] to-[#705df2] dark:from-[#4FD3FF] dark:to-[#4f8bff] flex items-center justify-center text-white text-3xl font-bold">
+              MV
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-[#0A0F2C] dark:text-white tracking-tight">Manish Vaghamshi</h3>
+              <p className="text-[#1A3CE4] dark:text-[#4FD3FF] font-semibold">Founder, MARVONIX</p>
+            </div>
+          </div>
+          
+          <div className="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-[17px]">
+            <p>
+              I've spent years building production systems. The problems I kept seeing weren't technical. They were process problems. Bad handoffs. Too many meetings. Junior devs learning on your live systems.
+            </p>
+            <p>
+              I started MARVONIX because I wanted to work differently. Small team. Senior people only. When you work with us, you talk directly to the engineers writing your code. No account managers in between.
+            </p>
+            <p>
+              I've built workflow automation that saves ops teams 15+ hours weekly. Systems handling millions in transactions. Legacy platform migrations with zero downtime. Good work happens when you cut the noise and focus on what matters.
+            </p>
+            <p>
+              We stay small on purpose. We pick clients who care about their product, who get that quality takes time, and who want engineers that will tell them when an idea won't work.
+            </p>
+            <p className="text-[#0A0F2C] dark:text-white font-semibold pt-4">
+              If that sounds right, let's talk.
+            </p>
+          </div>
+        </div>
       </div>
     </FadeIn>
 
@@ -68,6 +109,16 @@ const About: React.FC = () => {
         </FadeIn>
       ))}
     </div>
+    
+    <FadeIn delay={600}>
+      <div className="mt-24 text-center bg-slate-50 dark:bg-[#080c24] p-16 rounded-3xl border border-slate-200 dark:border-slate-800">
+        <h3 className="text-3xl font-bold text-[#0A0F2C] dark:text-white mb-4 tracking-tight">Ready to work with us?</h3>
+        <p className="text-slate-600 dark:text-slate-400 mb-10 max-w-xl mx-auto text-lg leading-relaxed">
+          Tell us what you're trying to build, fix, or automate. We'll get back to you within 1-2 business days.
+        </p>
+        <Button onClick={() => navigate('/contact')}>Start a Conversation</Button>
+      </div>
+    </FadeIn>
     </div>
   );
 };

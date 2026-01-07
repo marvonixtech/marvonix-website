@@ -1,5 +1,5 @@
 import React from 'react';
-import { Twitter, Github, MessageCircle } from 'lucide-react';
+import { Twitter, Github, MessageCircle, Instagram } from 'lucide-react';
 import type { NavigateFunction } from '../../types';
 
 interface PageProps {
@@ -7,7 +7,7 @@ interface PageProps {
 }
 
 const Footer: React.FC<PageProps> = ({ navigate }) => (
-  <footer className="bg-white dark:bg-[#0A0F2C] border-t border-slate-200 dark:border-slate-800 pt-24 pb-12 transition-colors">
+  <footer role="contentinfo" className="bg-white dark:bg-[#0A0F2C] border-t border-slate-200 dark:border-slate-800 pt-24 pb-12 transition-colors">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         <div className="col-span-1 md:col-span-2">
@@ -31,6 +31,10 @@ const Footer: React.FC<PageProps> = ({ navigate }) => (
              <a href="https://wa.me/919726492494?text=Hi%20MARVONIX" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center hover:bg-[#25D366] dark:hover:bg-[#25D366] hover:text-white dark:hover:text-white cursor-pointer transition-all duration-300">
                <span className="sr-only">WhatsApp</span>
                <MessageCircle className="h-5 w-5" />
+             </a>
+             <a href="https://www.instagram.com/marvonix.tech/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#FD1D1D] hover:text-white dark:hover:text-white cursor-pointer transition-all duration-300">
+               <span className="sr-only">Instagram</span>
+               <Instagram className="h-5 w-5" />
              </a>
           </div>
         </div>

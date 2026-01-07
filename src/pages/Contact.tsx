@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import FadeIn from '../components/ui/FadeIn';
@@ -111,6 +112,18 @@ const Contact: React.FC = () => {
             title="Tell us what you're trying to fix."
             description="We usually reply within 1–2 business days. If it's urgent, mention that in your message."
           />
+          
+          <div className="my-8 space-y-3 text-[15px]">
+            <p className="text-slate-600 dark:text-slate-400">
+              <Link to="/services" className="text-[#1A3CE4] dark:text-[#4FD3FF] hover:underline font-medium">Not sure what you need?</Link> Check out our services to see what we can help with.
+            </p>
+            <p className="text-slate-600 dark:text-slate-400">
+              <Link to="/work" className="text-[#1A3CE4] dark:text-[#4FD3FF] hover:underline font-medium">See examples of our work</Link> to understand how we approach projects.
+            </p>
+            <p className="text-slate-600 dark:text-slate-400">
+              <Link to="/about" className="text-[#1A3CE4] dark:text-[#4FD3FF] hover:underline font-medium">Learn about our process</Link> and how we work with clients.
+            </p>
+          </div>
           
           <FadeIn delay={200}>
             <div className="bg-white dark:bg-[#111835] p-10 rounded-2xl border border-slate-200 dark:border-slate-800 transition-colors shadow-sm">
