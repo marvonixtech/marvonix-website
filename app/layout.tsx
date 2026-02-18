@@ -12,6 +12,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Marvonix - Digital Solutions",
   description: "Transform ideas into exceptional digital experiences",
+  icons: {
+    icon: "/marvonix-symbol.svg",
+  },
 };
 
 export default function RootLayout({

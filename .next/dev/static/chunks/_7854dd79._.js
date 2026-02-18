@@ -742,10 +742,11 @@ function HomePage() {
                                 },
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "h-8 w-8 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-primary-foreground font-bold text-sm",
-                                            children: "M"
+                                        className: "h-8 w-8 flex items-center justify-center",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                            src: "/marvonix-symbol.svg",
+                                            alt: "Marvonix",
+                                            className: "h-full w-full object-contain"
                                         }, void 0, false, {
                                             fileName: "[project]/components/HomePage.tsx",
                                             lineNumber: 206,
@@ -756,9 +757,10 @@ function HomePage() {
                                         lineNumber: 205,
                                         columnNumber: 15
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-bold text-lg",
-                                        children: "Marvonix"
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: "/marvonix-watermark.svg",
+                                        alt: "Marvonix",
+                                        className: "h-5 w-auto"
                                     }, void 0, false, {
                                         fileName: "[project]/components/HomePage.tsx",
                                         lineNumber: 208,
@@ -2285,6 +2287,19 @@ function HomePage() {
             }, void 0, false, {
                 fileName: "[project]/components/HomePage.tsx",
                 lineNumber: 710,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed inset-0 z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]",
+                style: {
+                    backgroundImage: "url('/marvonix-watermark.svg')",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "50%"
+                }
+            }, void 0, false, {
+                fileName: "[project]/components/HomePage.tsx",
+                lineNumber: 719,
                 columnNumber: 7
             }, this)
         ]

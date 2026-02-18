@@ -4,6 +4,7 @@ import * as React from "react"
 import { ArrowRight, Mail, MapPin, Phone, Code, Palette, Smartphone, Sparkles, Zap, Target, Eye, Database, Cloud, Cpu, Server, Globe, Github, Instagram, MessageCircle } from "lucide-react"
 import { motion } from "framer-motion"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { MarvonixSymbol, MarvonixWatermark } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -202,10 +203,10 @@ export function HomePage() {
               e.preventDefault()
               scrollToSection("home")
             }}>
-              <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg">
-                <span className="text-primary-foreground font-bold text-sm">M</span>
+              <div className="h-8 w-8 flex items-center justify-center text-primary">
+                <MarvonixSymbol className="h-full w-full" />
               </div>
-              <span className="font-bold text-lg">Marvonix</span>
+              <MarvonixWatermark className="h-5 w-auto text-primary" />
             </a>
 
             <nav className="hidden md:flex items-center space-x-1">
@@ -714,6 +715,11 @@ export function HomePage() {
           backgroundSize: '24px 24px',
         }} 
       />
+
+      {/* Watermark Overlay */}
+      <div className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center opacity-[0.03] dark:opacity-[0.05]">
+        <MarvonixWatermark className="w-1/2 h-auto text-primary" />
+      </div>
     </div>
   )
 }
