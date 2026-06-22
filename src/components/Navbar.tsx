@@ -9,11 +9,11 @@ import { useModal } from "@/context/ModalContext";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Services", href: "#services" },
-  { label: "Case Studies", href: "#case-studies" },
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Services", href: "/#services" },
+  { label: "Case Studies", href: "/#case-studies" },
   { label: "About Us", href: "/about-us" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ] as const;
 
 export function Navbar() {
