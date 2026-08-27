@@ -323,7 +323,7 @@ function MailTantraCard() {
           ))}
           <div className="sm:col-span-2 mt-2">
             <Link
-              href="https://mailtantra.marvonix.com"
+              href="https://mailtantra.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-[11px] px-5 py-2.5 text-[13px] font-semibold transition-opacity hover:opacity-85 no-underline"
