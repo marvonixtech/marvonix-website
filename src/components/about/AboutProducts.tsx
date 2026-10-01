@@ -10,8 +10,8 @@ const PRODUCTS = [
     tagline: "AI-Powered Cold Email at Scale",
     description:
       "MailTantra is Marvonix's flagship email automation product. It handles cold outreach end to end: personalised sequences, follow-ups, inbox rotation, and reply detection. Your sales pipeline fills itself without manual effort.",
-    href: "https://mailtantra.marvonix.com",
-    label: "mailtantra.marvonix.com",
+    href: "https://mailtantra.com",
+    label: "mailtantra.com",
     badge: "Beta Product",
     color: "from-violet-500/10 to-indigo-500/10",
     borderColor: "border-violet-500/20",
