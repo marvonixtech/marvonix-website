@@ -27,7 +27,7 @@ const caseStudies: CaseStudy[] = [
     client: "SLEIN",
     title: "Built a Full E-Commerce Platform with Smart Inventory Automation",
     description:
-      "We designed and developed SLEIN's e-commerce platform from the ground up, then layered in inventory management automation. Stock levels stay accurate, restock alerts fire automatically, and the manual spreadsheet work that was slowing the team down is gone.",
+      "We built SLEIN's e-commerce platform from scratch, then automated inventory. Stock stays accurate and restock alerts fire on their own.",
     stats: [
       { value: "0", label: "Manual stock checks" },
       { value: "Real-time", label: "Inventory visibility" },
@@ -40,7 +40,7 @@ const caseStudies: CaseStudy[] = [
     client: "EXTOLMART",
     title: "AI Chat & Voice Bot Handling Customer Support Around the Clock",
     description:
-      "We built EXTOLMART's e-commerce platform and integrated an AI-powered chatbot and call bot to handle incoming customer queries around the clock. Product questions, order status, returns all get answered without a human agent stepping in for routine requests.",
+      "We built EXTOLMART's store and added an AI chat and call bot that answers product, order and returns queries around the clock.",
     stats: [
       { value: "24/7", label: "Support coverage" },
       { value: "Instant", label: "First response time" },
@@ -53,7 +53,7 @@ const caseStudies: CaseStudy[] = [
     client: "Finance Client",
     title: "Automated Reporting & Document Workflows for a Finance Firm",
     description:
-      "Helped a finance business replace manual report generation with automated workflows. Data gets pulled, formatted, and delivered on schedule without anyone touching it. Confidential by client request.",
+      "Manual report generation replaced with workflows that pull, format and deliver data on schedule.",
     stats: [
       { value: "Faster", label: "Report turnaround" },
       { value: "Less", label: "Manual data handling" },
@@ -66,7 +66,7 @@ const caseStudies: CaseStudy[] = [
     client: "Healthcare Client",
     title: "Patient Intake & Appointment Automation for a Healthcare Provider",
     description:
-      "Streamlined patient intake forms, appointment reminders, and follow-up communication using AI automation. Admin load dropped and patient response rates improved. Confidential by client request.",
+      "Automated patient intake, appointment reminders and follow-ups, cutting admin load and lifting response rates.",
     stats: [
       { value: "Reduced", label: "Admin workload" },
       { value: "Faster", label: "Intake processing" },
@@ -79,7 +79,7 @@ const caseStudies: CaseStudy[] = [
     client: "Real Estate Client",
     title: "Lead Capture & Follow-Up Automation for a Real Estate Business",
     description:
-      "Built an automated lead pipeline that captured enquiries from multiple channels, qualified them, and triggered personalised follow-up sequences. No lead went cold. Confidential by client request.",
+      "An automated pipeline that captures enquiries from every channel, qualifies them and triggers personalised follow-up.",
     stats: [
       { value: "Faster", label: "Lead response time" },
       { value: "More", label: "Leads followed up" },
@@ -92,7 +92,7 @@ const caseStudies: CaseStudy[] = [
     client: "Lead Gen Client",
     title: "End-to-End Lead Generation System with AI Qualification",
     description:
-      "Designed and deployed a lead generation automation that sourced, scored, and routed qualified leads to the right team members. Manual filtering is completely gone. Confidential by client request.",
+      "A lead system that sources, scores and routes qualified leads to the right team member, with no manual filtering.",
     stats: [
       { value: "Higher", label: "Lead quality" },
       { value: "Zero", label: "Manual lead sorting" },

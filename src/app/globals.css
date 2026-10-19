@@ -10,7 +10,7 @@
   --card-foreground: oklch(0.1908 0.0020 106.5859);
   --popover: oklch(1.0000 0 0);
   --popover-foreground: oklch(0.2671 0.0196 98.9390);
-  --primary: oklch(0.6171 0.1375 39.0427);
+  --primary: oklch(0.54 0.13 40);
   --primary-foreground: oklch(1.0000 0 0);
   --secondary: oklch(0.9245 0.0138 92.9892);
   --secondary-foreground: oklch(0.4334 0.0177 98.6048);
@@ -22,7 +22,7 @@
   --destructive-foreground: oklch(1.0000 0 0);
   --border: oklch(0.8847 0.0069 97.3627);
   --input: oklch(0.7621 0.0156 98.3528);
-  --ring: oklch(0.6171 0.1375 39.0427);
+  --ring: oklch(0.54 0.13 40);
   --chart-1: oklch(0.5583 0.1276 42.9956);
   --chart-2: oklch(0.6898 0.1581 290.4107);
   --chart-3: oklch(0.8816 0.0276 93.1280);
@@ -30,7 +30,7 @@
   --chart-5: oklch(0.5608 0.1348 42.0584);
   --sidebar: oklch(0.9663 0.0080 98.8792);
   --sidebar-foreground: oklch(0.3590 0.0051 106.6524);
-  --sidebar-primary: oklch(0.6171 0.1375 39.0427);
+  --sidebar-primary: oklch(0.54 0.13 40);
   --sidebar-primary-foreground: oklch(0.9881 0 0);
   --sidebar-accent: oklch(0.9245 0.0138 92.9892);
   --sidebar-accent-foreground: oklch(0.3250 0 0);
@@ -38,7 +38,7 @@
   --sidebar-ring: oklch(0.7731 0 0);
   --font-sans: Outfit, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: Geist Mono, ui-monospace, monospace;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
   --radius: 1rem;
   --shadow-x: 0;
   --shadow-y: 1px;
@@ -62,7 +62,7 @@
   --color-card: oklch(0.9665 0.0067 97.3521);
   --color-card-alt: oklch(0.9245 0.0138 92.9892);
   --color-card-deep: oklch(0.9341 0.0153 90.2390);
-  --color-accent: oklch(0.6171 0.1375 39.0427);
+  --color-accent: oklch(0.54 0.13 40);
   --color-accent-hover: oklch(0.5583 0.1276 42.9956);
   --color-accent-subtle: oklch(0.9245 0.0138 92.9892);
   --color-text: oklch(0.1908 0.0020 106.5859);
@@ -154,10 +154,10 @@
 
 /* Section label — burnt orange */
 .marvonix-label {
-  font-family: "Outfit", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 2.6px;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   color: var(--primary);
   text-transform: uppercase;
 }
@@ -238,3 +238,56 @@ html {
     transform: translateY(0);
   }
 }
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Honour reduced-motion for CSS animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---- Blueprint system ---- */
+.bp-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--border) 70%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 70%, transparent) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 72% 42%, #000 15%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 80% at 72% 42%, #000 15%, transparent 75%);
+}
+
+.bp-mono {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Corner brackets, like a viewfinder / drawing sheet */
+.bp-corners {
+  position: relative;
+}
+.bp-corners::before,
+.bp-corners::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--primary);
+  border-style: solid;
+  pointer-events: none;
+}
+.bp-corners::before { top: -1px; left: -1px; border-width: 1.5px 0 0 1.5px; }
+.bp-corners::after { bottom: -1px; right: -1px; border-width: 0 1.5px 1.5px 0; }
+
+@keyframes bp-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.bp-dot { animation: bp-pulse 2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .bp-dot { animation: none; } }

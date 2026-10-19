@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ScrollWords } from "@/components/ScrollWords";
 import { fadeUp, staggerContainer, staggerItem, viewport } from "@/lib/animations";
 
 const steps = [
@@ -32,10 +33,10 @@ export function SpeedSection() {
           viewport={viewport}
           className="mb-14"
         >
-          <p className="marvonix-label mb-4">TIMELINE</p>
+          <p className="marvonix-label mb-4">05 — Timeline</p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h2 className="font-[family-name:var(--font-outfit)] text-[48px] md:text-[64px] font-semibold tracking-[-2px] text-foreground leading-[1.1]">
-              Up and Running in 1–3 Weeks, Not Months
+              <ScrollWords text="Up and Running in 1–3 Weeks, Not Months" />
             </h2>
             <p className="text-muted-foreground text-[15px] max-w-[340px] leading-6 font-[family-name:var(--font-outfit)] md:text-right pb-1">
               Most enterprise AI projects take quarters. Ours take weeks, because we build for your business, not a hypothetical one.
@@ -54,10 +55,10 @@ export function SpeedSection() {
             <motion.div
               key={step.number}
               variants={staggerItem}
-              className="bg-muted rounded-[20px] border border-border p-6 md:p-7"
+              className="bp-corners bg-muted rounded-[20px] border border-border p-6 md:p-7"
             >
-              <span className="font-[family-name:var(--font-outfit)] text-[13px] font-semibold text-primary tracking-[0.06em]">
-                {step.number}
+              <span className="bp-mono text-[12px] font-medium text-primary">
+                STEP {step.number}
               </span>
               <h3 className="font-[family-name:var(--font-outfit)] text-[20px] font-semibold text-foreground mt-3 mb-2">
                 {step.title}

@@ -114,9 +114,11 @@ export function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2 pointer-events-auto"
+            className="md:hidden flex flex-col justify-center items-center gap-1.5 w-11 h-11 -mr-2 pointer-events-auto"
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             <motion.span
               className="block w-6 h-0.5 bg-foreground origin-center"
@@ -142,6 +144,7 @@ export function Navbar() {
         {mobileOpen && (
           <motion.div
             key="mobile-menu"
+            id="mobile-menu"
             className="fixed inset-0 z-40 flex flex-col pt-[72px] md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

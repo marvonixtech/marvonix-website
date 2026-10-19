@@ -1,8 +1,16 @@
-import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Outfit, Geist_Mono } from "next/font/google";
 import { ModalProvider } from "@/context/ModalContext";
+import { MotionProvider } from "@/components/MotionProvider";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import "./globals.css";
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -21,6 +29,7 @@ export const metadata: Metadata = {
     apple: "/seo/marvonix-symbol.svg",
   },
   metadataBase: new URL("https://marvonix.com"),
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Marvonix - AI Automation Agency",
     description:
@@ -35,6 +44,12 @@ export const metadata: Metadata = {
     description:
       "Custom AI automation for businesses. Save hours, capture every lead, scale without headcount.",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#faf9f5",
 };
 
 const organizationSchema = {
@@ -69,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} antialiased`} data-scroll-behavior="smooth">
+    <html lang="en" className={`${outfit.variable} ${geistMono.variable} antialiased`} data-scroll-behavior="smooth">
       <head>
         <script
           type="application/ld+json"
@@ -78,9 +93,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen overflow-x-clip">
         <GoogleAnalytics />
-        <ModalProvider>
-          {children}
-        </ModalProvider>
+        <MotionProvider>
+          <ModalProvider>{children}</ModalProvider>
+        </MotionProvider>
       </body>
     </html>
   );

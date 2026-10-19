@@ -104,6 +104,9 @@ export function ProjectInquiryModal({ open, onClose }: ProjectInquiryModalProps)
             transition={{ duration: 0.25, ease: "easeOut" }}
           >
             <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Start a project"
               className="relative w-full max-w-[560px] bg-card border border-border rounded-[24px] shadow-2xl pointer-events-auto overflow-y-auto max-h-[90vh] no-scrollbar"
               onClick={(e) => e.stopPropagation()}
             >
