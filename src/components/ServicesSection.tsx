@@ -214,48 +214,8 @@ const KANBAN_TASKS = [
 
 type KanbanCol = "todo" | "progress" | "done";
 
-function WorkflowIllustration() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-  const [cols, setCols] = useState<Record<string, KanbanCol>>({
-    t1: "todo", t2: "todo", t3: "todo", t4: "todo",
-  });
-  const [cycleKey, setCycleKey] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-
-    let cancelled = false;
-
-    async function runCycle() {
-      const delay = (ms: number) => new Promise<void>((r) => { const t = setTimeout(r, ms); if (cancelled) clearTimeout(t); });
-
-      // reset
-      setCols({ t1: "todo", t2: "todo", t3: "todo", t4: "todo" });
-      await delay(1200);
-
-      for (const id of ["t1", "t2", "t3", "t4"]) {
-        if (cancelled) return;
-        setCols((prev) => ({ ...prev, [id]: "progress" }));
-        await delay(1800);
-        if (cancelled) return;
-        setCols((prev) => ({ ...prev, [id]: "done" }));
-        await delay(900);
-      }
-
-      await delay(2000);
-      if (!cancelled) setCycleKey((k) => k + 1);
-    }
-
-    runCycle();
-    return () => { cancelled = true; };
-  }, [inView, cycleKey]);
-
-  const todo     = KANBAN_TASKS.filter((t) => cols[t.id] === "todo");
-  const progress = KANBAN_TASKS.filter((t) => cols[t.id] === "progress");
-  const done     = KANBAN_TASKS.filter((t) => cols[t.id] === "done");
-
-  const Column = ({ title, tasks, accent }: { title: string; tasks: typeof KANBAN_TASKS; accent?: boolean }) => (
+function KanbanColumn({ title, tasks, accent }: { title: string; tasks: typeof KANBAN_TASKS; accent?: boolean }) {
+  return (
     <div className="flex-1 flex flex-col gap-1.5 min-w-0">
       <div className="flex items-center gap-1.5 mb-1">
         {accent && (
@@ -297,6 +257,48 @@ function WorkflowIllustration() {
       </div>
     </div>
   );
+}
+
+function WorkflowIllustration() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true });
+  const [cols, setCols] = useState<Record<string, KanbanCol>>({
+    t1: "todo", t2: "todo", t3: "todo", t4: "todo",
+  });
+  const [cycleKey, setCycleKey] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+
+    let cancelled = false;
+
+    async function runCycle() {
+      const delay = (ms: number) => new Promise<void>((r) => { const t = setTimeout(r, ms); if (cancelled) clearTimeout(t); });
+
+      // reset
+      setCols({ t1: "todo", t2: "todo", t3: "todo", t4: "todo" });
+      await delay(1200);
+
+      for (const id of ["t1", "t2", "t3", "t4"]) {
+        if (cancelled) return;
+        setCols((prev) => ({ ...prev, [id]: "progress" }));
+        await delay(1800);
+        if (cancelled) return;
+        setCols((prev) => ({ ...prev, [id]: "done" }));
+        await delay(900);
+      }
+
+      await delay(2000);
+      if (!cancelled) setCycleKey((k) => k + 1);
+    }
+
+    runCycle();
+    return () => { cancelled = true; };
+  }, [inView, cycleKey]);
+
+  const todo     = KANBAN_TASKS.filter((t) => cols[t.id] === "todo");
+  const progress = KANBAN_TASKS.filter((t) => cols[t.id] === "progress");
+  const done     = KANBAN_TASKS.filter((t) => cols[t.id] === "done");
 
   return (
     <div ref={ref} className="relative w-full h-full flex flex-col justify-center px-5 py-5 overflow-hidden gap-3">
@@ -304,11 +306,11 @@ function WorkflowIllustration() {
 
       {/* Column headers row */}
       <div className="relative z-10 flex gap-2 items-stretch">
-        <Column title="To Do"       tasks={todo}     />
+        <KanbanColumn title="To Do"       tasks={todo}     />
         <div className="w-px bg-border self-stretch mx-0.5" />
-        <Column title="In Progress" tasks={progress} accent />
+        <KanbanColumn title="In Progress" tasks={progress} accent />
         <div className="w-px bg-border self-stretch mx-0.5" />
-        <Column title="Done"        tasks={done}     />
+        <KanbanColumn title="Done"        tasks={done}     />
       </div>
 
       {/* Footer */}
