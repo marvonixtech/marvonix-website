@@ -18,6 +18,7 @@ function isRateLimited(ip: string): boolean {
 }
 
 const MAX_LEN: Record<string, number> = {
+  submissionId: 36,
   formType:    20,
   fullName:    100,
   companyName: 100,
@@ -30,9 +31,12 @@ const MAX_LEN: Record<string, number> = {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
 const VALID_FORM_TYPES = new Set(["contact", "project"]);
 
 interface ValidatedBody {
+  submissionId: string;
   formType: string;
   fullName: string;
   companyName?: string;
@@ -54,6 +58,12 @@ function validate(raw: unknown): { data: ValidatedBody } | { error: string } {
   const allowed = new Set(Object.keys(MAX_LEN));
   for (const key of Object.keys(r)) {
     if (!allowed.has(key)) return { error: `Unexpected field: ${key}` };
+  }
+
+  // submissionId — required, UUID
+  const submissionId = r.submissionId;
+  if (typeof submissionId !== "string" || !UUID_RE.test(submissionId)) {
+    return { error: "Valid submissionId (UUID) is required" };
   }
 
   // formType
@@ -92,6 +102,7 @@ function validate(raw: unknown): { data: ValidatedBody } | { error: string } {
 
   return {
     data: {
+      submissionId: submissionId.toLowerCase(),
       formType,
       fullName: fullName.trim(),
       companyName: typeof r.companyName === "string" ? r.companyName.trim() : undefined,

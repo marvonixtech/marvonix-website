@@ -70,7 +70,7 @@ export function ProjectInquiryModal({ open, onClose }: ProjectInquiryModalProps)
       const res = await fetch("/api/submit-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "project", ...form }),
+        body: JSON.stringify({ submissionId: crypto.randomUUID(), formType: "project", ...form }),
       });
       if (!res.ok) throw new Error("submission failed");
       setStatus("success");

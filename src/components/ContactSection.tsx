@@ -36,7 +36,7 @@ export function ContactSection() {
       const res = await fetch("/api/submit-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "contact", ...form }),
+        body: JSON.stringify({ submissionId: crypto.randomUUID(), formType: "contact", ...form }),
       });
       if (!res.ok) throw new Error("submission failed");
       setStatus("success");
