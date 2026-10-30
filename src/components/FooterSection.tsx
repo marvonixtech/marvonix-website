@@ -12,6 +12,7 @@ const marqueeText = "You don't need more people. You need better systems.";
 const exploreLinks = [
   { label: "Services", href: "/#services" },
   { label: "Case Studies", href: "/#case-studies" },
+  { label: "Blog", href: "/blog" },
   { label: "About Us", href: "/about-us" },
   { label: "Contact", href: "/#contact" },
 ];
